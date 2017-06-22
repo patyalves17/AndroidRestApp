@@ -36,7 +36,11 @@ public class AndroidAdapter extends RecyclerView.Adapter<AndroidAdapter.AndroidV
     public void onBindViewHolder(AndroidViewHolder holder, int position) {
         holder.tvTitulo.setText(androids.get(position).getNome());
         holder.tvSubTitulo.setText(androids.get(position).getVersao());
-        Picasso.with(holder.itemView.getContext()).load(androids.get(position).getUrlImagem()).into(holder.ivLogo);
+        Picasso.with(holder.itemView.getContext())
+                .load(androids.get(position).getUrlImagem())
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
+                .into(holder.ivLogo);
     }
 
     @Override
@@ -56,5 +60,10 @@ public class AndroidAdapter extends RecyclerView.Adapter<AndroidAdapter.AndroidV
             tvTitulo=(TextView) itemView.findViewById(R.id.tvTitulo);
             tvSubTitulo=(TextView) itemView.findViewById(R.id.tvSubTitulo);
         }
+    }
+
+    public void update(List<Android> androids){
+        this.androids=androids;
+        notifyDataSetChanged();
     }
 }
