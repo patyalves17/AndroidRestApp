@@ -9,7 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import com.fiap.patyalves.androidrestapp.adapter.AndroidAdapter;
 import com.fiap.patyalves.androidrestapp.api.APIUtils;
 import com.fiap.patyalves.androidrestapp.api.AndroidAPI;
+import com.fiap.patyalves.androidrestapp.modelo.Android;
 import com.fiap.patyalves.androidrestapp.modelo.ResponseAndroid;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         rvAndroids=(RecyclerView)findViewById(R.id.rvAndroids);
 
+        androdAdapter=new AndroidAdapter(new ArrayList<Android>());
+
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this);
         rvAndroids.setLayoutManager(layoutManager);
         rvAndroids.setAdapter(androdAdapter);
         rvAndroids.setHasFixedSize(true);
-        RecyclerView.ItemDecoration itemDecoration=new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        rvAndroids.addItemDecoration(itemDecoration);
+//        RecyclerView.ItemDecoration itemDecoration=new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+//        rvAndroids.addItemDecoration(itemDecoration);
 
         carregaDados();
 
